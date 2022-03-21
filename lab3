@@ -1,0 +1,27 @@
+top
+
+free -b
+free -t
+free -o
+free -V
+
+ps -a
+ps -e
+ps -g
+ps -t
+
+cd ~
+
+mkdir inform && cd inform
+mkdir lab1 && cd lab1
+mkdir catalog1 && mkdir catalog2
+echo  "It's file1"  > file1.txt
+cd catalog2
+echo "It's file3" > file3.txt
+echo  "It's file4"  > file4.txt
+mkdir catalog3 && cd catalog3
+echo  "It's file5"  > file5.txt
+ln -d ~/inform/lab1/file1.txt ~/inform/lab1/catalog2/catalog3/link_file.txt
+ln -sf ~/inform/lab1/catalog2 ~/inform/lab1/catalog2/catalog3/link_catalog2
+ln -sf ~/inform/lab1/catalog2/catalog3/file5.txt ~/inform/lab1/linj_file5.txt
+mc
