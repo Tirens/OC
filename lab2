@@ -1,0 +1,78 @@
+dim a, f, obj, oShell, p
+do
+    WScript.StdOut.WriteLine "Это меню, не переживайте:"
+    WScript.StdOut.WriteLine "-----------------------------------"
+    WScript.StdOut.WriteLine "1) Вся необходимая информация"
+    WScript.StdOut.WriteLine "2) Удаление файлов заданного расширения в заданной папке"
+    WScript.StdOut.WriteLine "3) Создание ярлыка для просмотра содержимого заданной папки и помещение его на рабочий стол"
+    WScript.StdOut.WriteLine "4) Выйти"
+    WScript.StdOut.WriteLine ""
+    WScript.StdOut.Write "Выберите пункт меню:"
+
+    a = Wscript.StdIn.ReadLine
+    set WshShell = WScript.CreateObject("WScript.Shell")
+
+    if(a="1") then
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine "Это информация:"
+        WScript.StdOut.WriteLine "-----------------------------------"
+        WScript.StdOut.WriteLine "1) Выполнил работу:"
+        WScript.StdOut.WriteLine "Гайшун Иван Александрович, группа ИТИ-12"
+        WScript.StdOut.WriteLine "2) Краткое (нет) описание:"
+        WScript.StdOut.WriteLine "-----------------------------------"
+        WScript.StdOut.WriteLine "1. Обозначаем переменные a c помощью dim"
+        WScript.StdOut.WriteLine "2. Вводим цикл с постусловием (do) до момента срабатывания 4) кнопки (Выход)"
+        WScript.StdOut.WriteLine "3. Пишем начальное меню и выводим по строкам (WScript.StdOut.WriteLine)"
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine "Задание a):"
+        WScript.StdOut.WriteLine "1. Просим указать путь папки"
+        WScript.StdOut.WriteLine "2. Просим указать расширение файлов, которые будут удалены"
+        WScript.StdOut.WriteLine "3. Подключаем FSO для работы с файлами (fso)"
+        WScript.StdOut.WriteLine "4. Удаляем файлы (fso.DeleteFile)"
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine "Задание б):"
+        WScript.StdOut.WriteLine "1. Пишем ссылку на объект WshSell"
+        WScript.StdOut.WriteLine "2. Указываем путь к рабочему столу как: strDesktop = WshShell.SpecialFolders(Desktop)"
+        WScript.StdOut.WriteLine "3. Просим указать имя будущего ярлыка"
+        WScript.StdOut.WriteLine "4. Создаем путь ярлыку (strDesktop+\f.lnk)"
+        WScript.StdOut.WriteLine "5. Указываем путь, по которому будет переходить ярлык"
+        WScript.StdOut.WriteLine "6. Сохраняем ярлык"
+        WScript.StdOut.WriteLine "7. Выводим на консоль результат"
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine ""
+
+    elseif(a="2") Then
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.Write "Введите путь папки, файлы которой хотите удалить:"
+        p = WScript.StdIn.ReadLine
+        WScript.StdOut.Write "Введите расширения файлов для удаления (без точки):"
+        f = WScript.StdIn.ReadLine
+        set fso = CreateObject("Scripting.FileSystemObject") 'создаем ссылку FSO для работы с файлами
+        fso.DeleteFile p & "\*."+f+""
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine "Успех! Вы удалили все файлы с рамширением ."+f+" из папки "+p+""
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine ""
+
+
+    elseif(a="3") Then
+        WScript.StdOut.WriteLine ""
+        set WshSell = WScript.CreateObject ("WScript.Shell") 'ссылка на объект
+        strDesktop = WshShell.SpecialFolders("Desktop") 'путь к рабочему столу
+        WScript.StdOut.Write "Введите имя ярлыка:" 'имя будущего ярлыка
+        f = WScript.StdIn.ReadLine  'ввод имени
+        set oShellLink = WshShell.CreateShortcut(strDesktop+"\"+f+".lnk") 'путь к рабочему столу + имя файла с расширением .lnk
+        WScript.StdOut.Write "Введите путь папки:"
+        p = WScript.StdIn.ReadLine
+        oShellLink.TargetPath = p 'путь, который открывает ярлык
+        oShellLink.Save
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine "Был создан ярлык "+f+".lnk, с адресом: "+p+""
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine ""
+        WScript.StdOut.WriteLine ""
+    End if
+    loop until (a="4")
+    
