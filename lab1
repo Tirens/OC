@@ -1,0 +1,36 @@
+md test
+cd test
+Copy con my.txt
+(CTRL+Z)
+dir
+type my.txt
+md A1
+md A2
+copy me.txt A1
+tree . >A2\tree.txt
+ren A1\my.txt old.txt
+move "H:\test\A1\old.txt" "H:\test\A2\"
+move "H:\test\A2\free.txt" "H:\test\A1\"
+rd /s .
+
+Controls --
+
+md Zadanie1
+cd Zadanie1
+md A1
+md A2
+md A3
+copy "C:\windows\*.ini" A1
+cd "C:\windows"
+dir /b > "H:\Zadanie1\A2\file.txt"
+cd "H:\Zadanie1"
+copy H:\Zadanie1\A1 A3 & copy
+copy H:\Zadanie1\A2 A3 & copy
+cd A3
+dir
+cd H:\Zadanie1\A1
+ren H:\Zadanie1\A1\*.ini ~ *.bak
+cd H:\Zadanie1\A3
+set >  H:\Zadanie1\A3\set.txt
+set myname = Гайшун
+set > H:\Zadanie1\A3\new_set.txt
