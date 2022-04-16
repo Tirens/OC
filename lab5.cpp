@@ -99,7 +99,7 @@ int main(){
 								}
 								printf("%d\n", min_proc);
 								printf("%d\n",min_kol_summ);
-								if(P[number].size <= min_kol_summ)
+						
 								{
 						
 									printf(" Свопинг процесса %s %d на процесс %s %d\n",P[min_proc].name, P[min_proc].size, P[number].name, P[number].size);
